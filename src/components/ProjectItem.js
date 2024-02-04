@@ -1,12 +1,23 @@
 import React from "react";
 
-function ProjectItem({ name, about, technologies }) {
+function ProjectItem({ project }) {
+  if (!project) {
+    return null; // or handle this case accordingly
+  }
+
+  const { name, about, technologies } = project;
+
   return (
     <div className="project-item">
-      <h3>{name}</h3>
+      <h2>{name}</h2>
       <p>{about}</p>
       <div className="technologies">
-        {/* render a <span> for each technology in the technologies array */}
+        <h3>Technologies</h3>
+        {technologies ? (
+          technologies.map((tech) => <span key={tech}>{tech}</span>)
+        ) : (
+          <span>No technologies provided</span>
+        )}
       </div>
     </div>
   );
